@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼가요~♡ [아이돌이름] 생일카페</title>
+    <style>
+        :root { --main-orange: #ff8a00; --bg-blue: #b3d9ff; --dot-color: #999; }
+        body {
+            background-color: #f0f0f0;
+            background-image: radial-gradient(var(--main-orange) 1px, transparent 1px);
+            background-size: 20px 20px;
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            margin: 0; font-family: "돋움", dotum, sans-serif; font-size: 12px;
+        }
+        /* 메인 프레임 */
+        .wrapper {
+            width: 95%; max-width: 850px; height: 550px;
+            background-color: var(--bg-blue); border: 1px solid #777; border-radius: 15px;
+            padding: 25px; display: flex; position: relative; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        }
+        .inner-box {
+            background-color: white; border: 2px dashed #999; border-radius: 10px;
+            flex: 1; display: flex; padding: 15px; gap: 15px; overflow: hidden;
+        }
+        /* 왼쪽 프로필 */
+        .left-section { width: 220px; border-right: 1px solid #eee; display: flex; flex-direction: column; align-items: center; }
+        .today-stats { color: red; font-weight: bold; margin-bottom: 10px; }
+        .profile-img { width: 180px; height: 180px; border: 1px solid #ccc; object-fit: cover; margin-bottom: 15px; }
+        .profile-msg { color: #666; text-align: center; line-height: 1.5; padding: 0 10px; }
+
+        /* 오른쪽 메인 */
+        .main-section { flex: 1; display: flex; flex-direction: column; position: relative; }
+        .main-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .title { color: #238db3; font-weight: bold; font-size: 15px; }
+        
+        /* BGM 플레이어 */
+        .bgm-player {
+            width: 220px; height: 35px; border: 1px solid #ccc; background: #f8f8f8;
+            display: flex; align-items: center; padding: 0 8px; font-size: 11px;
+        }
+        .play-btn { color: var(--main-orange); font-size: 14px; margin-right: 8px; cursor: pointer; }
+
+        /* 미니룸 (이미지 영역) */
+        .mini-room {
+            width: 100%; height: 220px; border: 1px solid #eee; margin-bottom: 15px;
+            background-image: url('https://i.ibb.co/68vM97D/pixel-art.png'); /* 여기에 픽셀아트 주소 */
+            background-size: cover; background-position: center;
+        }
+
+        /* 일촌평 영역 */
+        .guestbook { flex: 1; border-top: 1px solid #eee; padding-top: 10px; overflow-y: auto; }
+        .input-group { display: flex; gap: 5px; background: #f0f0f0; padding: 8px; border-radius: 5px; margin-bottom: 10px; }
+        .input-group input { flex: 1; border: 1px solid #ccc; padding: 4px; font-size: 11px; }
+        .btn { background: white; border: 1px solid #999; font-size: 11px; cursor: pointer; padding: 2px 8px; }
+        .comment-item { margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px dashed #eee; }
+        .comment-name { color: #238db3; font-weight: bold; margin-right: 8px; }
+
+        /* 메뉴 버튼 (오른쪽 사이드) */
+        .side-menu {
+            position: absolute; right: -50px; top: 50px; display: flex; flex-direction: column; gap: 5px;
+        }
+        .menu-btn {
+            background-color: #238db3; color: white; border: 1px solid #1a6d8a;
+            padding: 8px 12px; border-radius: 0 8px 8px 0; cursor: pointer; font-size: 12px;
+        }
+        .menu-btn.active { background-color: white; color: #333; border-left: none; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="inner-box">
+        <div class="left-section">
+            <div class="today-stats">TODAY 520 | TOTAL 1994</div>
+            <img src="https://i.ibb.co/68vM97D/pixel-art.png" class="profile-img">
+            <div class="profile-msg">
+                <b>[아이돌 이름]</b><br><br>
+                생일 축하해!! 🎂<br>
+                퍼가요~♡ 많이 눌러주세요!
+            </div>
+        </div>
+        
+        <div class="main-section">
+            <div class="main-header">
+                <div class="title">사이좋은 사람들, 싸이월드</div>
+                <div class="bgm-player">
+                    <span class="play-btn">▶</span>
+                    <span class="song-title">BGM: [최애곡] - 아이돌이름</span>
+                </div>
+            </div>
+
+            <div class="mini-room"></div>
+
+            <div class="guestbook">
+                <div style="font-weight:bold; margin-bottom:10px; color:#238db3;">일촌평</div>
+                <div class="input-group">
+                    <input type="text" placeholder="일촌평을 남겨주세요!">
+                    <button class="btn">확인</button>
+                </div>
+                <div class="comment-item"><span class="comment-name">러블리팬</span> 픽셀 캐릭터 미쳤다ㅠㅠ 너무 귀여워!</div>
+                <div class="comment-item"><span class="comment-name">도토리</span> 생카 당일날 달려갑니다!!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="side-menu">
+        <button class="menu-btn active">홈</button>
+        <button class="menu-btn">사진첩</button>
+        <button class="menu-btn">방명록</button>
+    </div>
+</div>
+
+</body>
+</html>
