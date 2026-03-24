@@ -39,12 +39,10 @@
         .profile-text { font-size: 11px; color: #666; line-height: 1.6; text-align: center; }
         .profile-name { color: #238db3; font-weight: bold; margin: 10px 0; text-align: center; }
 
-        /* --- 오른쪽 메인 섹션 --- */
-        .main-section { flex: 1; display: flex; flex-direction: column; }
-        .main-title { 
-            font-size: 13px; color: #238db3; font-weight: bold; 
-            margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;
-        }
+        /* 오른쪽 메인 콘텐츠 */
+        .main-section { flex: 1; display: flex; flex-direction: column; position: relative; overflow-y: auto; padding-right: 10px; }
+        .content-area { display: none; } /* 기본적으로 숨김 */
+        .content-area.active { display: block; } /* 선택된 것만 보임 */
 
         .miniroom-area {
             width: 100%; height: 220px; border: 1px solid #ddd;
@@ -102,7 +100,7 @@
                 <p>● [일기] 벌써 생일이라니 시간 빠르다</p>
             </div>
         </div>
-    </div>
+        
     <div id="photo" class="content-area">
                 <b>Photo Album</b><hr>
                 <div class="photo-grid">
