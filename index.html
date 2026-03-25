@@ -190,6 +190,21 @@ body /* Purple Angel Wing Heart - https://www.cursors-4u.com/cursor/purple-angel
             <div style="font-size:11px; color:#666; text-align:center; margin-bottom: 10px;">
         TODAY IS... <span style="color:red;">설렘♥</span>
     </div>
+            <div class="sidebar-box" style="margin-bottom: 10px; width: 100%; box-sizing: border-box;">
+        <div class="sidebar-title">싸이 BGM <span style="color: #ff8a00;">♬</span></div>
+        <audio id="my-bgm" src="https://raw.githubusercontent.com/da1eee0609/meu2026/main/byesummer.mp3" loop></audio>
+        
+        <ul class="music-list">
+            <li id="bgm-item" style="color:#666;" onclick="toggleBgm()">
+                <span id="bgm-status">▷</span> 1. Bye, Summer - 미유
+            </li>
+            <li style="color:#999;">2. NERDY - ifeye</li>
+            <li style="color:#999;">3. IRL - ifeye</li>
+        </ul>
+                <div style="margin-top:8px; height:3px; background:#ddd; position:relative;">
+            <div id="bgm-progress" style="width:0%; height:100%; background:#ff8a00; transition: width 0.1s;"></div>
+        </div>
+    </div>
     <div class="left-bottom">
         <select id="wave-select">
             <option value="">일촌 파도타기</option>
@@ -358,31 +373,6 @@ body /* Purple Angel Wing Heart - https://www.cursors-4u.com/cursor/purple-angel
                 내일 공연장에서 만나요! ✨
             </div>
         </div>
-    </div>
-
-</div>
-<div class="right-sidebar">   
-    <div class="sidebar-box">
-        <div class="sidebar-title">
-            <span>싸이 BGM</span>
-            <span style="color: #ff8a00; font-size: 9px;">♬</span>
-        </div>
-        
-        <audio id="my-bgm" src="https://raw.githubusercontent.com/da1eee0609/meu2026/main/byesummer.mp3" loop></audio>
-        
-        <ul class="music-list">
-            <li id="bgm-item" style="color:#666;" onclick="toggleBgm()">
-                <span id="bgm-status">▷</span> 1. Bye, Summer - 미유
-            </li>
-            <li style="color:#999;">2. NERDY - ifeye</li>
-            <li style="color:#999;">3. IRL - ifeye</li>
-        </ul>
-        
-        <div style="margin-top:8px; height:3px; background:#ddd; position:relative;">
-            <div id="bgm-progress" style="width:0%; height:100%; background:#ff8a00; transition: width 0.1s;"></div>
-        </div>
-    </div>
-
     </div>
 
     <div class="side-tabs">
