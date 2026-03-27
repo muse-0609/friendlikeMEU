@@ -14,6 +14,7 @@ body {
     height: 100vh; 
     margin: 0; 
     font-family: "돋움", dotum, sans-serif;
+}
 /* 메인 바깥쪽 프레임 배경색 수정 */
 .outer-box {
     /* 기존 #D9C3FA에서 조금 더 밝고 부드러운 연보라로 변경 */
@@ -172,7 +173,18 @@ body {
 }
 /* 퍼가요 도트 아이콘 (선택 사항) */
 .scrap-popup::before {
-    content: "/ᐠ｡ꞈ｡ᐟ\  ";
+    content: "₍^. .^₎⟆ ";
+}
+/* 1. 전체 마우스 커서를 보라색 도트로 변경 */
+body {
+    /* 실제 싸이월드 느낌의 픽셀 커서 모양 */
+    cursor: url('https://cur.cursors-4u.net/symbols/sym-9/sym847.cur'), auto;
+}
+
+/* 2. 클릭 가능한 요소(버튼, 링크 등)에 올라갔을 때 커서 */
+a, button, .tab-btn, .wave-btn, tr[onclick], #bgm-item {
+    /* 손가락 모양 대신 반짝이는 픽셀 커서로 변경 */
+    cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat984.cur'), pointer !important;
 }
     </style>
 </head>
