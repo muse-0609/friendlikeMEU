@@ -526,7 +526,101 @@ function surf() {
         list.insertBefore(newComment, list.firstChild);
         input.value = "";
     }
+// 1. [필수] 본인의 구글 웹 앱 URL을 여기에 붙여넣으세요!
+const scriptURL = 'https://script.google.com/macros/s/여기에_본인의_스크립트_URL_넣기/exec';
 
+// 페이지가 로드될 때 실행
+window.onload = function() {
+    loadComments(); // 저장된 일촌평 불러오기
+    
+    // (선택 사항) BGM 재생 바 업데이트 등 기존 기능이 있다면 여기에 추가
+};
+
+/**
+ * 2. 데이터베이스(스프레드시트)에서 일촌평 목록 가져오기
+ */
+function loadComments() {
+    const list = document.getElementById('comment-list');
+    if (!list) return;
+
+    // 로딩 중 표시
+    list.innerHTML = '<div class="comment-item" style="color:#999; font-size:11px;">일촌평을 불러오는 중입니다... 🔍</div>';
+
+    // 캐시 방지를 위해 타임스탬프 추가
+    fetch(scriptURL + "?t=" + new Date().getTime())
+        .then(res => res.json())
+        .then(data => {
+            list.innerHTML = ''; 
+            if (data && data.length > 0) {
+                // 최신순으로 정렬 (배열 뒤집기)
+                data.reverse().forEach(item => {
+                    const newItem = document.createElement('div');
+                    newItem.className = 'comment-item';
+                    
+                    // 날짜 형식 예쁘게 다듬기 (예: 2026. 4. 22.)
+                    const dateInfo = item.date ? `<small style="color:#bbb; font-size:9px; float:right;">${new Date(item.date).toLocaleDateString()}</small>` : '';
+                    
+                    newItem.innerHTML = `<b>${item.nickname || '일촌'}</b> ${item.content || ''} ${dateInfo}`;
+                    list.appendChild(newItem);
+                });
+            } else {
+                list.innerHTML = '<div class="comment-item" style="color:#999;">아직 등록된 일촌평이 없어요. 🥓</div>';
+            }
+        })
+        .catch(error => {
+            console.error('Error!', error);
+            list.innerHTML = '<div class="comment-item" style="color:#ff6b6b;">데이터를 불러오지 못했습니다. URL을 확인해주세요!</div>';
+        });
+}
+
+/**
+ * 3. 새 일촌평 등록하기
+ */
+function addComment() {
+    const nickInput = document.getElementById('nickname-input');
+    const contentInput = document.getElementById('comment-input');
+    const btn = document.querySelector('.input-box button');
+
+    const nickname = nickInput.value.trim() || "일촌";
+    const content = contentInput.value.trim();
+
+    if (!content) {
+        alert("내용을 입력해주세요!");
+        return;
+    }
+
+    // 전송 중 버튼 비활성화
+    btn.disabled = true;
+    btn.innerText = "중...";
+
+    // 구글 스크립트로 데이터 전송
+    fetch(scriptURL, {
+        method: 'POST',
+        // POST 요청 시 'no-cors'를 쓰면 응답 데이터는 못 읽지만 데이터 전송은 확실히 됩니다.
+        mode: 'no-cors', 
+        cache: 'no-cache',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_name: nickname, user_msg: content })
+    })
+    .then(() => {
+        // 성공 알림
+        alert(nickname + "님의 일촌평이 등록되었습니다! 🎂");
+        
+        // 입력창 비우기 및 버튼 복구
+        nickInput.value = '';
+        contentInput.value = '';
+        btn.disabled = false;
+        btn.innerText = "확인";
+
+        // 등록 후 1초 뒤에 목록 새로고침 (구글 시트 반영 시간 고려)
+        setTimeout(loadComments, 1000);
+    })
+    .catch(error => {
+        alert("오류가 발생했습니다. 다시 시도해주세요.");
+        btn.disabled = false;
+        btn.innerText = "확인";
+    });
+}
     // BGM
     function toggleBgm() {
     const bgm = document.getElementById('my-bgm');
